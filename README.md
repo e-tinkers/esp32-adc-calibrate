@@ -30,13 +30,3 @@ By default, the program will generate a `float ADC_LUT` which take up much more 
 ### How to use the LUT?
 
 Refer to the sketch in example directory on how to apply the LUT in your program.
-
-### Noise on ESP32
-
-The ESP32 is much noisy compare to Arduino. Add a 0.1uF capacity on Vout would help a little bit in smoothing out the noise or alternative write a filter algorithm to handle it.
-
-**Arduino ADC reading from thermistor**
-[![Arduino ADC reading from thermistor](https://github.com/e-tinkers/ntc-thermistor-with-arduino-and-esp32/blob/master/images/Arduino_ADC_reading.png)](https://github.com/e-tinkers/ntc-thermistor-with-arduino-and-esp32/blob/master/images/Arduino_ADC_reading.png)
-
-**ESP32 ADC reading from thermistor**
-[![ESP32 ADC reading from thermistor](https://github.com/e-tinkers/ntc-thermistor-with-arduino-and-esp32/blob/master/images/ESP32_ADC_reading.png)](https://github.com/e-tinkers/ntc-thermistor-with-arduino-and-esp32/blob/master/images/ESP32_ADC_reading.png)

@@ -6,7 +6,7 @@ The code is based on original work from [Helmut Weber](https://github.com/MacLeo
 
 To address the ESP32 ADC non-linear issue, a lookup table is used to correct the non-linearity. You may need to generate your own lookup table as it varies from device to device due to the variation of ESP32 internal reference voltage.
 
-[![ESP32 ADC linearity](https://github.com/e-tinkers/esp32-adc-calibrate/blob/master/esp32_ADClinearity.png)](https://github.com/e-tinkers/esp32-adc-calibrate/blob/master/esp32_ADClinearity.png)
+[![ESP32 ADC linearity](https://github.com/e-tinkers/esp32-adc-calibrate/blob/master/examples/esp32_adc_lut_example.ino)](https://github.com/e-tinkers/esp32-adc-calibrate/blob/master/examples/esp32_adc_lut_example.ino)
 
 ### Things need to know before using LUT
 
@@ -29,4 +29,12 @@ By default, the program will generate a `float ADC_LUT` which take up much more 
 
 ### How to use the LUT?
 
-Refer to the sketch in example directory on how to apply the LUT in your program.
+Refer to the sketch in example directory on how to apply the LUT in your program. Run the sketch and see the result on Serial Plotter.
+
+Here is the results between raw reading from ESP32 ADC against the calibrated reading with LUT.
+
+[![rawReading versus calbratedReading](https://github.com/e-tinkers/esp32-adc-calibrate/blob/master/images/rawReading_versus_calibratedReading.png)](https://github.com/e-tinkers/esp32-adc-calibrate/blob/master/images/rawReading_versus_calibratedReading.png)
+
+and here is the DAC output against calibrated ADC reading.
+
+[![DAC output versus ADC calbratedReading](https://github.com/e-tinkers/esp32-adc-calibrate/blob/master/images/DAC_output_versus_adcCalibratedReading.png)](https://github.com/e-tinkers/esp32-adc-calibrate/blob/master/images/DAC_output_versus_adcCalibratedReading.png)

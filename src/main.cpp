@@ -124,7 +124,7 @@ void loop() {
     Serial.println();
 
 #ifdef FLOAT_LUT
-    Serial.println("const float ADC_LUT[4096] PROGMEM = { 0,");
+    Serial.println("const float ADC_LUT[4096] = { 0,");
     for (int i=1; i<4095; i++) {
        Serial.print(Results[i],4); Serial.print(",");
        if ((i%15)==0) Serial.println();
@@ -132,7 +132,7 @@ void loop() {
     Serial.println(Results[4095]);
     Serial.println("};");
 #else
-    Serial.println("const int ADC_LUT[4096] PROGMEM = { 0,");
+    Serial.println("const int ADC_LUT[4096] = { 0,");
     for (int i=1; i<4095; i++) {
       Serial.print((int)Results[i]); Serial.print(",");
       if ((i%15)==0) Serial.println();

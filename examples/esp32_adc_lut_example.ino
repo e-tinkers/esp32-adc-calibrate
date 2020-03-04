@@ -1,10 +1,10 @@
 #include <Arduino.h>
 #include <driver/dac.h>
 
-// This example uses a DAC output (pin 25) as a source and feed into ADC (pin 35) 
+// This example uses a DAC output (pin 25) as a source and feed into ADC (pin 35)
 // The calibrated value of the ADC is generated through LUT based on raw reading from the ADC
 
-const float ADC_LUT[4096] PROGMEM = { 0,
+const float ADC_LUT[4096] = { 0,
 7.4000,17.0000,18.8000,20.8000,22.8000,24.8000,26.6000,28.6000,30.4000,32.2000,33.6000,34.8000,36.0000,37.2000,38.6000,
 39.8000,41.0000,42.2000,43.8000,44.8000,46.0000,47.2000,48.6000,49.6000,50.6000,51.6000,52.4000,53.4000,54.4000,55.4000,
 56.4000,57.2000,58.2000,59.2000,60.2000,61.2000,62.2000,63.0000,64.0000,65.2000,66.6000,67.8000,68.8000,69.8000,71.0000,
@@ -308,5 +308,5 @@ void loop() {
       Serial.println(calibratedReading);
       delay(10);
     }
-    
+
 }

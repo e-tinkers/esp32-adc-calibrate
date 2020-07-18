@@ -18,11 +18,11 @@ It is your choice on whether you want to implement the polynomial fitting method
 
 ### How to generate the LUT?
 
-This program use the ESP32 DAC to generate a value as the reference and feed it into the ADC for calibration. Remember to use a short jumper wire to connect DAC output(pin 25) to ADC Channel 1(pin 35) on your ESP32.
+This program use the ESP32 DAC to generate a value as the reference and feed it into the ADC for calibration. Remember to use a short jumper wire to connect DAC output(GPIO 25) to ADC Channel 1 ADC7(GPIO 35) on your ESP32.
 
 By default, the program will generate a `float ADC_LUT` which take up much more memory but with better precision, if you want to have an `int ADC_LUT` table, comment out the line `#define FLOAT_LUT` to get the integer table.
 
-1. Connect a jumper wire between pin25 and pin 35;
+1. Connect a jumper wire between GPIO 25 and GPIO 35 (i.e. A7);
 2. decide on what table (float or integer) you'd want to generate;
 3. Start the `main.cpp` sketch from PlatformIO or Arduino IDE;
 4. When the program stops, copy and paste the entire table from Serial Monitor to your sketch to use it.

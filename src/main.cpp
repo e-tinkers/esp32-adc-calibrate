@@ -8,9 +8,13 @@
 // Build a ESP32 ADC Lookup table to correct ESP32 ADC linearity issue
 // Run this sketch to build your own LUT for each of your ESP32, copy and paste the
 // generated LUT to your sketch for using it, see example sketch on how to use it
+//
+// Version 2.0 - switch to use analogRead() instead of esp-idf function adcStart()
+// Version 1.0 - original adoptation and bug fix based on Helmut Weber code
 
-// #define GRAPH        // uncomment this for print on Serial Plotter
-#define FLOAT_LUT    // uncomment this if you need float LUT
+// #define GRAPH      // uncomment this for print on Serial Plotter
+#define FLOAT_LUT     // uncomment this if you need float LUT
+#define ADC_PIN 35    // GPIO 35 = A7, uses any valid Ax pin as you wish
 
 float Results[4097];
 float Res2[4096*5];
@@ -40,7 +44,7 @@ void dumpRes2() {
 void setup() {
     dac_output_enable(DAC_CHANNEL_1);    // pin 25
     dac_output_voltage(DAC_CHANNEL_1, 0);
-    adcAttachPin(35);
+    analogReadResolution(12);
     Serial.begin(500000);
     delay(1000);
 }
@@ -53,11 +57,7 @@ void loop() {
       for (int i=0;i<256;i++) {
           dac_output_voltage(DAC_CHANNEL_1, (i & 0xff));
           delayMicroseconds(100);
-          adcStart(35);
-          while (adcBusy(35)) {
-            delayMicroseconds(10);
-          }
-          Results[i*16]=0.9*Results[i*16] + 0.1*adcEnd(35);
+          Results[i*16]=0.9*Results[i*16] + 0.1*analogRead(ADC_PIN);
       }
     }
     Serial.println();
@@ -110,11 +110,7 @@ void loop() {
       for (int i=2; i<256; i++) {
         dac_output_voltage(DAC_CHANNEL_1, (i & 0xff));
         delayMicroseconds(100);
-        adcStart(35);
-        while (adcBusy(35)) {
-          delayMicroseconds(10);
-        }
-        float r = Results[adcEnd(35)];
+        float r = Results[analogRead(ADC_PIN)];
         Serial.print(i*16); Serial.print(" "); Serial.println(r);
       }
     }

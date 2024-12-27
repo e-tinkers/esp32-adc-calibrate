@@ -10,7 +10,7 @@ To address the ESP32 ADC non-linear issue, a lookup table is used to correct the
 
 ### Things need to know before using LUT
 
-It is recommended to read the [ESP32 Analog to Digital Converter](https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/adc.html) before using the LUT approach for solving the ESP32 linearity issue. According to documentation, ESP32 chips(ESP32-D0WD and ESP32-D0WDQ6) that manufactured after 1st week of 2018 have been individual measurement and burned with the eFuse Vref value on to the chip. The eFuse Vref can be read using the function call `read_efuse_vref(void)` which you can find the source code at [esp_adc_cal.c](https://github.com/espressif/esp-idf/blob/f91080637c054fa2b4107192719075d237ecc3ec/components/esp_adc_cal/esp_adc_cal.c#L153).
+It is recommended to read the [ESP32 ADC Calibration](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/adc_calibration.html) before using the LUT approach for solving the ESP32 linearity issue. According to documentation, ESP32 chips(ESP32-D0WD and ESP32-D0WDQ6) that manufactured after 1st week of 2018 have been individual measurement and burned with the eFuse Vref value on to the chip. The eFuse Vref can be read using the function call `read_efuse_vref(void)` which you can find the source code at [esp_adc_cal.c](https://github.com/espressif/esp-idf/blob/f91080637c054fa2b4107192719075d237ecc3ec/components/esp_adc_cal/esp_adc_cal.c#L153).
 
 There is a function [`calculate_voltage_linear()`](https://github.com/espressif/esp-idf/blob/f91080637c054fa2b4107192719075d237ecc3ec/components/esp_adc_cal/esp_adc_cal.c#L246) in the same library which uses a polynomial formula to correct the linearity.
 
